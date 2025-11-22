@@ -1,0 +1,54 @@
+site_name: 資訊課程網站
+site_description: C++ / Python / 多元選修 / TQC+ 程式語言(第2版)
+site_url: https://你的帳號.github.io/cs-course-site/
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.top
+    - navigation.sections
+    - navigation.expand
+    - toc.integrate
+  palette:
+    - scheme: default
+
+nav:
+  - 首頁: index.md
+  - 關於本課程: about.md
+
+  - C++ 程式設計:
+      - 課程總覽: c_cpp/index.md
+      - 第 01 週：基本輸入輸出: c_cpp/week01.md
+      - 第 02 週：變數、運算與條件: c_cpp/week02.md
+
+  - Python 程式設計:
+      - 課程總覽: python_basic/index.md
+      - 第 01 週：Python 基本輸入輸出: python_basic/week01.md
+      - 第 02 週：變數與條件判斷: python_basic/week02.md
+
+  - 多元選修 Python（一）:
+      - 課程總覽: python_elective1/index.md
+      - 第 01 週：遊戲專題概念與規劃: python_elective1/week01.md
+      - 第 02 週：Pygame 基本事件處理: python_elective1/week02.md
+
+  - 多元選修 Python（二）:
+      - 課程總覽: python_elective2/index.md
+      - 第 01 週：專題規劃與進度: python_elective2/week01.md
+      - 第 02 週：進階功能與資料結構: python_elective2/week02.md
+
+  - TQC+ 程式語言 (第2版):
+      - 總覽: tqc_exam/index.md
+      - 第1單元：基本敘述 (10 題): tqc_exam/unit1_basic.md
+      - 第2單元：選擇敘述與迴圈 (10 題): tqc_exam/unit2_selection_loop.md
+      - 第3單元：函式與陣列 (10 題): tqc_exam/unit3_function_array.md
+      - 第4單元：字串與檔案處理 (10 題): tqc_exam/unit4_string_file.md
+      - 第5單元：綜合應用一 (10 題): tqc_exam/unit5_mixed1.md
+      - 第6單元：綜合應用二 (10 題): tqc_exam/unit6_mixed2.md
+      - 第7單元：綜合應用三 (10 題): tqc_exam/unit7_mixed3.md
+
+  - 程式參考資料:
+      - 總覽: reference/index.md
+      - C++ 教學與資源: reference/cpp_links.md
+      - Python 教學與資源: reference/python_links.md
+      - 線上評測平台與工具: reference/tools.md
