@@ -1,4 +1,4 @@
-# 🧰 C++ STL（Standard Template Library）完整整理版
+# 🧰 C++ STL（Standard Template Library）
 
 本頁整理常用的 C++ STL 容器與演算法，適合作為課堂講義與學生自學參考。
 
@@ -590,3 +590,6 @@ v.erase(unique(v.begin(), v.end()), v.end());
 | `lower_bound` 等   | 二分搜尋                  | CSES – Concert Tickets         |
 | `next_permutation` | 字典序排列                | UVA 146 – ID Codes             |
 | `unique` + `erase` | 去重 / 壓縮               | CSES – Distinct Numbers        |
+
+
+※以上資料為chatgpt整理
