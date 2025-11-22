@@ -165,8 +165,6 @@ def dfs(u, adj, visited):
 
 下表比較 BFS 與 DFS 的全部面向。
 
-符合你要求：表格後「空一列」。
-
 功能 / 面向	            BFS             DFS
 
 搜尋方式	               層級擴散             一路深入
