@@ -15,3 +15,5 @@
 - [C++ 教學與資源](cpp_links.md)
 - [Python 教學與資源](python_links.md)
 - [線上評測平台與實用工具](tools.md)
+
+※以上資料為chatgpt整理
