@@ -26,3 +26,5 @@
 4. 與 APCS / TQC+ / ZeroJudge 題庫練習結合
 
 祝同學在演算法的世界越走越順利！
+
+※以上資料為chatgpt整理
