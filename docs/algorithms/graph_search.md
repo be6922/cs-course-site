@@ -346,63 +346,93 @@ void dfs(int u){
 題型	ZeroJudge
 
 迷宮最短路    （BFS）	a290
+
 二維 BFS	d626
+
 可達性	a725
+
 連通元件（DFS）	c291
+
 找環（DFS）	c471
+
 Node 度數	d190
+
 BFS 簡單圖	a224
+
 DFS 可達點	a693
+
 Flood Fill	c221
+
 Level BFS	e507
+
 <br>
+
 🟡 Level 2：中階題（11～20）
+
 題型	ZeroJudge
+
 多源 BFS	e563
+
 grid BFS	f640
+
 騎士走法（BFS）	c005
+
 拓樸排序（Kahn）	a291
+
 DFS Cycle（無向圖）	c471
+
 DFS Cycle（有向圖）	自製
+
 邊數、層數分析	自製
+
 BFS 回溯路徑	自製
+
 二分圖著色	自製
+
 BFS 求最遠點	自製
+
 <br>
+
 🔴 Level 3：挑戰題（21～30）
+
 題型	備註
+
 迷宮可破牆一次（BFS + 狀態）	需要 3D dist
+
 0/1 BFS	Deque
+
 最長路徑（DAG）	DP or DFS
+
 SCC	強連通元件
+
 兩次 BFS 求圖的直徑	樹很常用
+
 割點（Articulation Point）	進階
+
 割邊（Bridge）	Tarjan
+
 BFS + DP 混合題	自製
+
 地圖 DP + DFS	自製
+
 迷宮特殊移動（跳躍、加權）	自製
+
+
 <br>
+
 8️⃣ ZeroJudge 題單（可直接貼給學生）
+
 🟢 Level 1
+
 a290, d626, a725, c291, c471, d190, c221
 
 🟡 Level 2
+
 e563, e507, f640, c005, a291
 
 🔴 Level 3
 
-（教師可選題）
 
 0/1 BFS、破牆 BFS、SCC、Bridge、Diameter
 
 <br>
-🎉 完成！
-
-你現在得到：
-
-✓ BFS/DFS 整合教學
-✓ 強化比較表（表格且後面多空行）
-✓ 迷宮模板
-✓ 找環教學（含 ASCII 圖示）
-✓ 題型大全 30 題
-✓ ZeroJudge 題單
