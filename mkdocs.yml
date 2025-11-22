@@ -40,8 +40,10 @@ nav:
   - 演算法:
       - 課程總覽: algorithms/index.md
       - 基本概念（時間複雜度等）: algorithms/basic.md
-      - 搜尋與圖論（BFS / DFS）: algorithms/graph_search.md
+      - STL 標準程式庫（容器 + 演算法）: algorithms/stl.md     
       - 排序與資料結構: algorithms/sort_ds.md
+      - 搜尋與圖論（BFS / DFS）: algorithms/graph_search.md
+      
 
   - TQC+ 程式語言 (第2版):
       - 總覽: tqc_exam/index.md
