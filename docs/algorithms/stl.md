@@ -1,11 +1,9 @@
-# 🧰 C++ STL（Standard Template Library）完整整理版
+# 🧰 C++ STL（Standard Template Library）
 
-本頁提供最完整、最適合教學的 STL 課程內容：
+本頁提供 STL 課程內容：
 - 每個容器的用途、底層、複雜度
 - 每個容器附上一題線上評測代表題目
-- 常用演算法（Algorithms）詳細版本
-- 最後附上 STL × 題目總表（速查）
-
+- 常用演算法（Algorithms）
 ---
 
 # 📦 一、序列式容器（Sequence Containers）
