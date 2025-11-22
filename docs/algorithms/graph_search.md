@@ -1,56 +1,58 @@
-🌟 搜尋與圖論：BFS / DFS（完整教學版）
+🌟 搜尋與圖論（BFS / DFS 大全）
 
 搜尋（Search）是所有演算法的核心之一。
-無論是迷宮、找路、圖論、樹的遍歷、最短路徑、找環……
+
+無論是迷宮、最短路徑、找環、連通元件、拓樸排序……
+
 都離不開 BFS（廣度優先搜尋） 與 DFS（深度優先搜尋）。
 
-本章將逐步介紹：
+本章節包含：
 
-BFS / DFS 核心概念
+BFS / DFS 基本介紹
 
-程式模板（C++ / Python）
+強化版比較表（以表格呈現）
 
-完整比較表（強化版）
+迷宮 BFS 模板（C++ / Python）
 
-二維迷宮
+找環教學（ASCII 圖示）
 
-連通元件
+BFS / DFS 題型大全（30 題）
 
-找環（Cycle）
+ZeroJudge 題單
 
-常見題型（含 ZeroJudge / LeetCode）
-
-1️⃣ 什麼是「圖」？
+1️⃣ 圖的基本概念
 
 一張圖（Graph）由：
 
-節點 Nodes / Vertices
+節點（Vertices / Nodes）
 
-邊 Edges
+邊（Edges）
 
-常見表示法：
+常用表示法：
 
-表示方式	說明
+方法	說明
 
-鄰接串列 Adjacency List	adj[u] 為所有與 u 相鄰的 v
+鄰接串列（Adjacency List）	adj[u] 是所有與 u 相鄰的點
 
-鄰接矩陣 Adjacency Matrix	g[u][v] = 1 表示 u → v 有邊
+邊列表（Edge List）	用 pairs 存 (u, v)
 
-2️⃣ BFS — Breadth-First Search
+鄰接矩陣（Adjacency Matrix）	g[u][v] = 1 表示 u→v 有邊
 
-一層一層擴散的搜尋法。
+<br>
 
-核心特點：
+2️⃣ BFS — Breadth-First Search（廣度優先搜尋）
+
+概念：
+
+像水波一層一層擴散。
 
 使用 Queue（佇列）
 
-能找到 最短路徑
+能找 最短路徑（步數最少）
 
-適合「邊權重相同」的圖
+在迷宮題裡是最常用的算法
 
-常用在迷宮、最短步數
-
-BFS 模板（C++）
+BFS — C++ 樣板
 
 queue<int> q;
 
@@ -82,19 +84,54 @@ void bfs(int start) {
     }
 }
 
-3️⃣ DFS — Depth-First Search
+BFS — Python 樣板
 
-沿著一條路徑一直走到底的搜尋法。
+from collections import deque
 
-核心特點：
+def bfs(start, adj):
 
-使用 Recursion（遞迴） 或 Stack
+    n = len(adj)
+    
+    dist = [-1] * n
+    
+    q = deque([start])
+    
+    dist[start] = 0
 
-深度優先，適合「找一整塊」
+    while q:
+    
+        u = q.popleft()
+        
+        for v in adj[u]:
+        
+            if dist[v] == -1:
+            
+                dist[v] = dist[u] + 1
+                
+                q.append(v)
+    return dist
 
-可用來判斷 是否連通、是否有環、拓樸排序
+<br>
 
-DFS 模板（C++）
+3️⃣ DFS — Depth-First Search（深度優先搜尋）
+
+概念：
+
+沿著一條路徑一直往深處走到底，再回頭換路。
+
+用 遞迴（Recursion） 或 Stack
+
+適合找「整塊區域」
+
+常用在：
+
+連通元件
+
+找環
+
+拓樸排序
+
+DFS — C++ 樣板
 
 vector<int> adj[MAXN];
 
@@ -107,65 +144,110 @@ void dfs(int u) {
     for (int v : adj[u]) {
     
         if (!visited[v]) dfs(v);
-        
     }
 }
 
-4️⃣ BFS vs DFS 強化比較表（完整版）
+DFS — Python 樣板
 
-以下是強化後、適合教育網站的 高完整度比較表：
+def dfs(u, adj, visited):
+
+    visited[u] = True
+    
+    for v in adj[u]:
+    
+        if not visited[v]:
+        
+            dfs(v, adj, visited)
+
+<br>
+
+4️⃣ BFS vs DFS 強化比較表（重要）
+
+下表比較 BFS 與 DFS 的全部面向。
+
+符合你要求：表格後「空一列」。
 
 功能 / 面向	BFS	DFS
 
-核心概念	逐層擴散	一條路走到底
+搜尋方式	層級擴散	一路深入
 
 資料結構	Queue	Recursion / Stack
 
-最短路徑	✅ 必定最短	❌ 不保證
+是否能找到最短路徑	✅ 一定可以	❌ 不一定
 
-找連通元件	可	⭐ 最常用
+判斷連通性	可以	⭐ 最常用
 
-找環（Cycle detection）	可（需額外紀錄）	⭐ 常用（parent 技巧）
+找環（Cycle）	可（需記錄 parent）	⭐ 最常用
 
-拓樸排序	可（Kahn's Algorithm）	可（DFS Post-order）
+拓樸排序	✔（Kahn）	✔（DFS Post-order）
 
-走訪順序	層級（Level-order）	深度（Depth-order）
+記憶體負擔	層級大會大量佔用記憶體	遞迴深會 stack overflow
 
-記憶體使用	層級太大時會爆（Queue 過長）	遞迴太深會 stack overflow
+走訪順序	Level-order	Depth-order
 
-找路徑（Path Reconstruction）	⭐ 常用（parent）	可
+適合題型	迷宮、最短路徑	數區塊、找環
 
-適合大圖嗎？	較適合廣度型問題	適合深度搜尋
+複雜度	O(V+E)	O(V+E)
 
-找有沒有路（Reachability）	✔	✔
+<br>
 
-找所有可達點	✔	✔
+5️⃣ 迷宮 BFS（最常見題型）
 
-演算法複雜度	O(V + E)	O(V + E)
-
-適用資料結構	Graph / Tree / Grid	Graph / Tree / Grid
-
-2D 迷宮	⭐ 首選（最短步數）	用於是否可達
-
-記憶體負擔	依層級大小而定	依遞迴深度而定
-
-應用類型	最短路徑、層序遍歷、多源 BFS	連通元件、找環、拓樸、樹遍歷
-
-難度（實作）	中（需要 Queue）	簡（遞迴三行）
-
-ZeroJudge 題型	迷宮 BFS、0-1 BFS	DFS 找區塊、找環
-
-5️⃣ 二維迷宮 BFS（最常見題型）
-
-迷宮範例：
+2D 迷宮示例：
 
 S.#..
 ..#.E
 .#...
 
-Python 程式：
+迷宮 BFS（C++）
 
-from collections import deque
+int R, C;
+
+vector<string> grid;
+
+int dist[1005][1005];
+
+int dr[4] = {-1, 0, 1, 0};
+
+int dc[4] = {0, 1, 0, -1};
+
+queue<pair<int,int>> q;
+
+...
+
+// dist 初始化
+
+for (int i=0; i<R; i++)
+
+    for (int j=0; j<C; j++)
+    
+        dist[i][j] = -1;
+
+q.push({sr, sc});
+
+dist[sr][sc] = 0;
+
+while (!q.empty()) {
+
+    auto [r, c] = q.front(); q.pop();
+    
+    for (int k=0; k<4; k++) {
+    
+        int nr = r + dr[k], nc = c + dc[k];
+        
+        if (nr<0 || nr>=R || nc<0 || nc>=C) continue;
+        
+        if (grid[nr][nc] == '#') continue;
+        
+        if (dist[nr][nc] != -1) continue;
+
+        dist[nr][nc] = dist[r][c] + 1;
+        
+        q.push({nr, nc});
+    }
+}
+
+迷宮 BFS（Python）
 
 def bfs_maze(grid, sr, sc):
 
@@ -196,65 +278,24 @@ def bfs_maze(grid, sr, sc):
                     dist[nr][nc] = dist[r][c] + 1
                     
                     q.append((nr, nc))
-                    
     return dist
 
-6️⃣ 連通元件（Connected Components）
+<br>
 
-常見問題：
+6️⃣ 找環（Cycle Detection）教學（含 ASCII 圖示）
 
-圖裡有幾塊互相不相連的區域？
+🔷 無向圖找環（概念）
 
-C++ 程式碼
+例如：
 
-int n;
+1 -- 2
+|    |
+4 -- 3
 
-vector<int> adj[MAXN];
 
-bool visited[MAXN];
+DFS 走到已訪問過的節點且不是 parent，代表發現環。
 
-void dfs(int u) {
-
-    visited[u] = true;
-    
-    for (int v : adj[u]) {
-    
-        if (!visited[v])
-        
-            dfs(v);
-    }
-}
-
-int count_cc() {
-
-    int cnt = 0;
-    
-    for (int i=1; i<=n; i++) {
-    
-        if (!visited[i]) {
-        
-            cnt++;
-            
-            dfs(i);
-            
-        }
-    }
-    return cnt;
-    
-}
-
-7️⃣ 無向圖找環（Cycle Detection）
-
-DFS 判斷環（無向圖）
-
-邏輯：
-
-若走到的點 已經 visited
-
-又 不是我來的方向（父節點）
-→ 代表有環
-
-C++ 程式
+🔷 無向圖找環（C++）
 
 bool visited[MAXN];
 
@@ -274,45 +315,93 @@ void dfs(int u, int p){
     }
 }
 
-8️⃣ 推薦練習題（ZeroJudge / LeetCode）
-ZeroJudge
+🔷 有向圖找環（需 in_stack）
 
-a290 — 迷宮 BFS
+bool visited[MAXN], in_stack[MAXN];
 
-d626 — 二維 BFS
+bool has_cycle = false;
 
-c291 — DFS 找連通元件
+void dfs(int u){
 
-c471 — 找環
+    visited[u] = true;
+    
+    in_stack[u] = true;
 
-e563 — BFS 多起點擴散
+    for (int v : adj[u]){
+    
+        if (!visited[v]) dfs(v);
+        
+        else if (in_stack[v]) has_cycle = true;
+    }
 
-e507 — BFS 層級走訪
+    in_stack[u] = false;
+}
 
-LeetCode
+<br>
 
-200. Number of Islands（DFS）
+7️⃣ BFS / DFS 題型大全（30 題）
 
-695. Max Area of Island（DFS）
+🟢 Level 1：入門題（1～10）
 
-542. 01 Matrix（多源 BFS）
+題型	ZeroJudge
+迷宮最短路（BFS）	a290
+二維 BFS	d626
+可達性	a725
+連通元件（DFS）	c291
+找環（DFS）	c471
+Node 度數	d190
+BFS 簡單圖	a224
+DFS 可達點	a693
+Flood Fill	c221
+Level BFS	e507
+<br>
+🟡 Level 2：中階題（11～20）
+題型	ZeroJudge
+多源 BFS	e563
+grid BFS	f640
+騎士走法（BFS）	c005
+拓樸排序（Kahn）	a291
+DFS Cycle（無向圖）	c471
+DFS Cycle（有向圖）	自製
+邊數、層數分析	自製
+BFS 回溯路徑	自製
+二分圖著色	自製
+BFS 求最遠點	自製
+<br>
+🔴 Level 3：挑戰題（21～30）
+題型	備註
+迷宮可破牆一次（BFS + 狀態）	需要 3D dist
+0/1 BFS	Deque
+最長路徑（DAG）	DP or DFS
+SCC	強連通元件
+兩次 BFS 求圖的直徑	樹很常用
+割點（Articulation Point）	進階
+割邊（Bridge）	Tarjan
+BFS + DP 混合題	自製
+地圖 DP + DFS	自製
+迷宮特殊移動（跳躍、加權）	自製
+<br>
+8️⃣ ZeroJudge 題單（可直接貼給學生）
+🟢 Level 1
+a290, d626, a725, c291, c471, d190, c221
 
-994. Rotting Oranges（BFS）
+🟡 Level 2
+e563, e507, f640, c005, a291
 
-207. Course Schedule（拓樸排序）
+🔴 Level 3
 
-🏁 小結
+（教師可選題）
 
-想要 最短路徑 → 一律 BFS
+0/1 BFS、破牆 BFS、SCC、Bridge、Diameter
 
-想要 是否連通 / 找區塊 → DFS 或 BFS
+<br>
+🎉 完成！
 
-想要 找環 → DFS（最常用）
+你現在得到：
 
-想要 層級資訊 → BFS
-
-想要 遍歷整棵樹 → DFS / BFS 都能
-
-搜尋是所有演算法的基礎，
-熟練 BFS / DFS 會讓你在 APCS、競賽、ZeroJudge 變得非常強。
-
+✓ BFS/DFS 整合教學
+✓ 強化比較表（表格且後面多空行）
+✓ 迷宮模板
+✓ 找環教學（含 ASCII 圖示）
+✓ 題型大全 30 題
+✓ ZeroJudge 題單
