@@ -1,6 +1,6 @@
 site_name: 資訊課程網站
 site_description: C++ / Python / 多元選修 / TQC+ 程式語言(第2版)
-site_url: https://你的帳號.github.io/cs-course-site/
+site_url: https://be6922.github.io/cs-course-site/
 
 theme:
   name: material
