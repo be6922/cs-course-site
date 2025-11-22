@@ -167,13 +167,13 @@ def dfs(u, adj, visited):
 
 符合你要求：表格後「空一列」。
 
-功能 / 面向	            BFS     	        DFS
+功能 / 面向	            BFS             DFS
 
-搜尋方式	            層級擴散	                一路深入
+搜尋方式	               層級擴散             一路深入
 
-資料結構            	Queue	                Recursion / Stack
+資料結構            	Queue            Recursion / Stack
 
-是否能找到最短路徑	✅ 一定可以            	❌ 不一定
+是否能找到最短路徑            ✅ 一定可以            	❌ 不一定
 
 判斷連通性	         可以	                ⭐ 最常用
 
