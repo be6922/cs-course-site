@@ -41,7 +41,7 @@ nav:
       - 課程總覽: algorithms/index.md
       - 基本概念（時間複雜度等）: algorithms/basic.md
       - STL 標準程式庫（容器 + 演算法）: algorithms/stl.md     
-      - 排序與資料結構: algorithms/sort_ds.md
+      - 排序與資料結構: algorithms/sort.md
       - 搜尋與圖論（BFS / DFS）: algorithms/graph_search.md
       
 
