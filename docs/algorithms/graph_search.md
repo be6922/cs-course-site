@@ -167,27 +167,27 @@ def dfs(u, adj, visited):
 
 符合你要求：表格後「空一列」。
 
-功能 / 面向	BFS	DFS
+功能 / 面向	            BFS     	        DFS
 
-搜尋方式	層級擴散	一路深入
+搜尋方式	            層級擴散	                一路深入
 
-資料結構	Queue	Recursion / Stack
+資料結構            	Queue	                Recursion / Stack
 
-是否能找到最短路徑	✅ 一定可以	❌ 不一定
+是否能找到最短路徑	✅ 一定可以            	❌ 不一定
 
-判斷連通性	可以	⭐ 最常用
+判斷連通性	         可以	                ⭐ 最常用
 
-找環（Cycle）	可（需記錄 parent）	⭐ 最常用
+找環（Cycle）	    可（需記錄 parent）	    ⭐ 最常用
 
-拓樸排序	✔（Kahn）	✔（DFS Post-order）
+拓樸排序	            ✔（Kahn）	            ✔（DFS Post-order）
 
-記憶體負擔	層級大會大量佔用記憶體	遞迴深會 stack overflow
+記憶體負擔	        層級大會大量佔用記憶體	遞迴深會 stack overflow
 
-走訪順序	Level-order	Depth-order
+走訪順序	            Level-order	            Depth-order
 
-適合題型	迷宮、最短路徑	數區塊、找環
+適合題型	            迷宮、最短路徑	        數區塊、找環
 
-複雜度	O(V+E)	O(V+E)
+複雜度	            O(V+E)	                O(V+E)
 
 <br>
 
@@ -344,7 +344,8 @@ void dfs(int u){
 🟢 Level 1：入門題（1～10）
 
 題型	ZeroJudge
-迷宮最短路（BFS）	a290
+
+迷宮最短路    （BFS）	a290
 二維 BFS	d626
 可達性	a725
 連通元件（DFS）	c291
