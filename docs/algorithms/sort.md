@@ -100,19 +100,34 @@ int main() {
 **C++ 範例（含最佳化）：**
 
 ```cpp
+// 泡沫排序（Bubble Sort）
+// 特色：一次比較相鄰兩個元素，把大的往後推
+// 時間複雜度：最差 O(n^2)，最佳 O(n)
+
 void bubble_sort(vector<int> &a) {
-    int n = a.size();
-    bool swapped = true;
+
+    int n = a.size();        // 取得陣列長度
+    bool swapped = true;     // swapped 用來偵測本輪是否發生交換
+
+    // 外層迴圈負責跑 n-1 輪，每一輪把一個最大值推到最後
+    // 如果某輪沒有交換動作，就代表已經排序完成，可提前結束
     for (int i = 0; i < n - 1 && swapped; i++) {
-        swapped = false;
+
+        swapped = false;     // 每輪開始時先假設沒有交換
+
+        // 內層迴圈：比較相鄰兩數，若順序錯誤就交換
+        // j < n-1-i：因為後面 i 個已是排序好的最大值，不需再比較
         for (int j = 0; j < n - 1 - i; j++) {
+
+            // 若前者 > 後者 → 交換
             if (a[j] > a[j+1]) {
                 swap(a[j], a[j+1]);
-                swapped = true;
+                swapped = true;  // 發生交換 → 本輪至少有效果
             }
         }
     }
 }
+
 ```
 
 > 常用於：教學「交換」概念與相鄰比較。
@@ -128,19 +143,33 @@ void bubble_sort(vector<int> &a) {
 **C++ 範例：**
 
 ```cpp
+// 插入排序（Insertion Sort）
+// 特色：從左到右，維持左側區域為「已排序區」
+// 將新的元素插入到已排序區的正確位置
+// 時間複雜度：最差 O(n^2)，最佳（資料本來就排序好）O(n)
+
 void insertion_sort(vector<int> &a) {
-    int n = a.size();
+
+    int n = a.size();   // 取得陣列長度
+
+    // i 從第 1 個位置開始（因為第 0 個視為已排序）
     for (int i = 1; i < n; i++) {
-        int key = a[i];
-        int j = i - 1;
-        // 把比 key 大的全部往右移
+
+        int key = a[i];     // 暫存要被「插入」的值
+        int j = i - 1;      // 從已排序區的最後一個開始比較
+
+        // 將所有「比 key 大」的值往右移，為 key 騰出位置
         while (j >= 0 && a[j] > key) {
-            a[j+1] = a[j];
-            j--;
+            a[j+1] = a[j];  // 大的往右移
+            j--;            // 往左繼續比較
         }
-        a[j+1] = key;  // 把 key 插入正確位置
+
+        // j 停下的位置為「第一個比 key 小或等於」的位置
+        // 所以 key 應插入 j+1
+        a[j+1] = key;
     }
 }
+
 ```
 
 > 優點：當資料「幾乎排序好」時非常快  
@@ -162,42 +191,127 @@ void insertion_sort(vector<int> &a) {
 **合併步驟 C++ 範例：**
 
 ```cpp
+// merge_vec：將 a[l..m] 與 a[m+1..r] 兩段「已排序」的子序列合併成一段排序好的序列
 void merge_vec(vector<int> &a, int l, int m, int r) {
+
+    // 建立左半邊 L：從 a[l] 到 a[m]
     vector<int> L(a.begin() + l, a.begin() + m + 1);
+
+    // 建立右半邊 R：從 a[m+1] 到 a[r]
     vector<int> R(a.begin() + m + 1, a.begin() + r + 1);
+
+    // i 指向 L，j 指向 R，k 指向原陣列 a 中要放置的位置
     int i = 0, j = 0, k = l;
+
+    // 比較 L 和 R 的目前元素，較小者放回 a[k]
     while (i < (int)L.size() && j < (int)R.size()) {
-        if (L[i] <= R[j]) a[k++] = L[i++];
-        else a[k++] = R[j++];
+        if (L[i] <= R[j])
+            a[k++] = L[i++];   // L[i] 比較小 → 放入 a
+        else
+            a[k++] = R[j++];   // R[j] 比較小 → 放入 a
     }
-    while (i < (int)L.size()) a[k++] = L[i++];
-    while (j < (int)R.size()) a[k++] = R[j++];
+
+    // 若 L 還沒放完，把剩下的全部放進 a
+    while (i < (int)L.size())
+        a[k++] = L[i++];
+
+    // 若 R 還沒放完，放進 a
+    while (j < (int)R.size())
+        a[k++] = R[j++];
 }
 
+// merge_sort：遞迴把陣列切半 → 排序 → 合併
 void merge_sort(vector<int> &a, int l, int r) {
-    if (l >= r) return;
-    int m = (l + r) / 2;
-    merge_sort(a, l, m);
-    merge_sort(a, m+1, r);
-    merge_vec(a, l, m, r);
+    if (l >= r) return;         // 只有一個元素 → 天生排序好
+
+    int m = (l + r) / 2;        // 找中間點
+
+    merge_sort(a, l, m);        // 排序左半邊
+    merge_sort(a, m + 1, r);    // 排序右半邊
+
+    merge_vec(a, l, m, r);      // 合併兩個排序好的半邊
 }
+
 ```
 
 ---
 
 ### 3.2 快速排序（Quick Sort）
+# 快速排序（Quick Sort）教學
 
-**想法：**
+快速排序（Quick Sort）是一種高效率、常見的排序演算法，採用「分治法」策略。
 
-1. 選一個 pivot（樞紐）  
-2. 把比 pivot 小的放左邊，比 pivot 大的放右邊  
-3. 對左右再遞迴排序
+---
 
-平均時間：O(n log n)  
-最壞：O(n²)（例如已排序的資料又選邊界為 pivot）
+## 📘 基本概念
 
-> C++ 的 `sort` 內部使用「混合排序」：  
-> 非單純 quick sort，而是 intro sort（quick + heap + insertion）。
+1. 選擇一個基準值（pivot）
+2. 將小於等於 pivot 的放左邊，大於 pivot 的放右邊
+3. 對左右子區域遞迴排序
+
+---
+
+## 📌 Quick Sort 程式碼（C++）
+
+```cpp
+// 分區函式：將 pivot 放到正確位置，並回傳 pivot 的新索引
+int partition(vector<int> &a, int l, int r) {
+    int pivot = a[r];    // 選最右邊的值作為 pivot
+    int i = l - 1;       // i 指向「小於 pivot 區域」的最後一位
+
+    // j 從 l 到 r-1 一一檢查
+    for (int j = l; j < r; j++) {
+        if (a[j] <= pivot) {     // 若 a[j] 比 pivot 小
+            i++;                 // 小於區域擴大一格
+            swap(a[i], a[j]);    // 交換到左邊
+        }
+    }
+
+    // 最後把 pivot 放到正確位置（i+1）
+    swap(a[i + 1], a[r]);
+    return i + 1;   // 回傳 pivot 位置
+}
+
+// Quick Sort 主程式：遞迴左右分治
+void quick_sort(vector<int> &a, int l, int r) {
+    if (l >= r) return;     // 遞迴終止條件（只有 0 或 1 個元素）
+
+    int p = partition(a, l, r);  // 尋找 pivot 正確位置
+
+    quick_sort(a, l, p - 1);     // 排序左半邊（較小）
+    quick_sort(a, p + 1, r);     // 排序右半邊（較大）
+}
+```
+
+---
+
+## ⏱ 時間複雜度
+
+| 情況 | 時間複雜度 | 說明 |
+|------|-------------|------|
+| 最佳 | O(n log n) | 每次平均切半 |
+| 平均 | O(n log n) | 常見情況 |
+| 最差 | O(n²) | pivot 太偏（例如已排序資料） |
+
+---
+
+## 📦 空間複雜度
+
+- 平均遞迴深度：O(log n)
+- 最差：O(n)
+
+---
+
+## 🧠 小示意圖
+
+示例：排序 `[5, 1, 4, 2, 3]`
+
+pivot = 3  
+
+左半邊（≤ 3）：1, 2, 3  
+右半邊（> 3）：5, 4  
+
+遞迴排序左右部分即可。
 
 ---
 
