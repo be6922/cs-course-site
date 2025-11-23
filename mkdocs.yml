@@ -15,8 +15,6 @@ theme:
 
 nav:
   - 首頁: index.md
-  - 關於本課程: about.md
-
   - C++ 程式設計:
       - 課程總覽: c_cpp/index.md
       - 第 01 週：基本輸入輸出: c_cpp/week01.md
