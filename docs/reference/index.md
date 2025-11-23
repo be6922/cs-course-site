@@ -1,19 +1,24 @@
-# 程式參考資料總覽
+# 程式學習與練習資源
 
-本區整理 C++、Python 以及常用工具的學習資源，提供學生課後自學與查詢使用。  
-
-
-建議使用方式：
-
-- 若你正在上 C++：請先看 **C++ 教學與資源**  
-- 若你正在上 Python 或多元選修 Python：請看 **Python 教學與資源**  
-- 若你想提升工具使用能力（Git、VS Code、線上 Judge）：請看 **線上工具與平台**
+本頁整理推薦的學習網站與練習平台，提供自學與課後練習使用。
 
 ---
 
-## 📚 目錄
-- [C++ 教學與資源](cpp_links.md)
-- [Python 教學與資源](python_links.md)
-- [線上評測平台與實用工具](tools.md)
+## 1．推薦學習網站
 
-※以上資料為chatgpt整理
+- [Python3 教程｜菜鸟教程](https://www.runoob.com/python3/python3-tutorial.html)
+- [C++ 教程｜菜鸟教程](https://www.runoob.com/cplusplus/cpp-tutorial.html)
+- [吳邦一的 APCS 題解目錄](https://hackmd.io/@bangyewu/B13lefwMp#吳邦一的APCS題解目錄)
+- [Yui Huang 演算法學習筆記](https://yuihuang.com/)
+- [W3Schools](https://www.w3schools.com/)
+- [均一教育平台 Junyi Academy](https://www.junyiacademy.org/)
+- [AA 競程學院（AA 競程）](https://aacpschool.com/)
+
+---
+
+## 2．練習平台
+
+- [ZeroJudge](https://zerojudge.tw/)
+- [CSES Problem Set](https://cses.fi/problemset/)
+- [LeetCode](https://leetcode.com/)
+- [Codeforces](https://codeforces.com/)
