@@ -55,8 +55,4 @@ nav:
       - 第6單元：綜合應用二 (10 題): tqc_exam/unit6_mixed2.md
       - 第7單元：綜合應用三 (10 題): tqc_exam/unit7_mixed3.md
 
-  - 程式參考資料:
-      - 總覽: reference/index.md
-      - C++ 教學與資源: reference/cpp_links.md
-      - Python 教學與資源: reference/python_links.md
-      - 線上評測平台與工具: reference/tools.md
+  - 參考資料: reference/index.md      
