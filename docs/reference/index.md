@@ -22,3 +22,5 @@
 - [CSES Problem Set](https://cses.fi/problemset/)
 - [LeetCode](https://leetcode.com/)
 - [Codeforces](https://codeforces.com/)
+
+ ※以上資料為chatgpt整理
