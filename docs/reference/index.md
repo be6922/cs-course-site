@@ -1,6 +1,6 @@
 # 程式學習與練習資源
 
-本頁整理推薦的學習網站與練習平台，提供自學與課後練習使用。
+本頁整理推薦的學習網站、競賽資訊與練習平台，提供自學與課後練習使用。
 
 ---
 
@@ -11,16 +11,21 @@
 - [吳邦一的 APCS 題解目錄](https://hackmd.io/@bangyewu/B13lefwMp#吳邦一的APCS題解目錄)
 - [Yui Huang 演算法學習筆記](https://yuihuang.com/)
 - [W3Schools](https://www.w3schools.com/)
-- [均一教育平台 Junyi Academy](https://www.junyiacademy.org/)
-- [AA 競程學院（AA 競程）](https://aacpschool.com/)
+- [均一教育平台 Junyi Academy](https://www.junyiacademy.org/computing/programming)
+- [AA 競程（競賽注意事項）](https://aacpschool.com/aacp-resources/)
 
 ---
 
-## 2．練習平台
+## 2．競賽資訊
+
+- [APCS — 大學程式設計先修檢測](https://apcs.csie.ntnu.edu.tw/)
+- [資奧 TOI — TPMSO Home](https://tpmso.org/toi/)
+
+---
+
+## 3．練習平台
 
 - [ZeroJudge](https://zerojudge.tw/)
 - [CSES Problem Set](https://cses.fi/problemset/)
 - [LeetCode](https://leetcode.com/)
 - [Codeforces](https://codeforces.com/)
-
- ※以上資料為chatgpt整理
