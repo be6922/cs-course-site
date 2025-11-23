@@ -12,7 +12,7 @@
 - [Yui Huang 演算法學習筆記](https://yuihuang.com/)
 - [W3Schools](https://www.w3schools.com/)
 - [均一教育平台 Junyi Academy](https://www.junyiacademy.org/computing/programming)
-- [AA 競程（競賽注意事項）](https://aacpschool.com/aacp-resources/)
+- [AA 競程（免費學習資源）](https://aacpschool.com/aacp-resources/)
 
 ---
 
