@@ -188,7 +188,7 @@ dp[0] = 1   (什麼都不做算1種)
 dp[1] = 1
 STB：
 
-* State：dp[i] = 到達第 i 階的走法數
+* State：dp[i] = 到達第 i 階的走法數* 
 * Transition：dp[i] = dp[i-1] + dp[i-2]
 * Base：dp[0]=1, dp[1]=1
 
@@ -332,9 +332,9 @@ print(dp[n])
 用 prefix 進行區間加速，使得 dp[x] 可在 O(1) 取得。適合 n 很大時使用。
 
 STB：
-- State：dp[x] = 湊出總和 x 的方法數
-- Transition：dp[x] = prefix[x-1] - prefix[x-7]
-- Base：dp[0]=1
+* State：dp[x] = 湊出總和 x 的方法數
+* Transition：dp[x] = prefix[x-1] - prefix[x-7]
+* Base：dp[0]=1
 
 ## C++
 ```cpp
@@ -381,7 +381,7 @@ int main() {
     cout << dp[n];
 }
 
-````
+```
 
 ## Python
 
@@ -406,11 +406,9 @@ print(dp[n])
 
 ## 題目說明
 只能往右、往下走：
-dp[i][j]=dp[i−1][j]+dp[i][j−1]
-n×m 網格，只能往右或往下，求走法數。
-
+dp[i][j]=dp[i−1][j]+dp[i][j−1] n×m 網格，
+只能往右或往下，求走法數。
 STB：
-
 * State：dp[i][j] = 走到 (i,j) 的方法數
 * Transition：由上或左而來
 * Base：dp[0][0]=1
