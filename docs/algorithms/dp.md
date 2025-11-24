@@ -469,16 +469,23 @@ print(dp[n-1][m-1])
 ## 題目說明
 
 每個物品只能取一次，容量限制下取最大價值。
+
 dp[i][w]=前i個物品，容量w時的最大價值
+
 dp[i][w]=max(dp[i−1][w], dp[i−1][w−weight[i]]+value[i])
 
 STB：
 
 * State：dp[i][cap]=用前 i 個物品、容量為 cap 的最大價值
+* 
 * Transition：取或不取
+* 
   **如果不拿第 i 物品： dp[i][cap]=dp[i−1][cap]
+  
   **如果拿第 i 物品：dp[i][cap]=dp[i−1][cap−wi​]+vi​
+  
   **取最大值：:dp[i][cap]=max(不拿,要拿)
+  
 * Base：dp[0][*]=0
 
 ## C++
