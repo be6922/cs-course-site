@@ -222,7 +222,7 @@ print(dp[n])
 
 # 7. Unit 4 — 骰子湊出總和（基本 DP）
 
-## 題目說明
+## 題目說明(cses1633 Dice Combinations)
 
 擲 1~6 點的骰子，問湊出總和 n 有多少種方法？
 
