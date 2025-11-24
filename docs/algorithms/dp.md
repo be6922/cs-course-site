@@ -279,7 +279,7 @@ int main() {
 
     cout << dp[n];
 }
-
+```
 ## python（逐行註解）
 
 ```python
@@ -298,7 +298,7 @@ for x in range(1, n+1):
     dp[x] = s % MOD
 
 print(dp[n])
-
+```
 ---
 
 # 8. Unit 5 — 骰子 DP（前綴和優化版）
