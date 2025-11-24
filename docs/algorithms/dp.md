@@ -558,19 +558,39 @@ STB：
 ## C++
 
 ```cpp
-#include <bits/stdc++.h>
+#include <bits/stdc++.h>      // 載入常用 C++ 標頭
 using namespace std;
-int main(){
-    int n;cin>>n;
-    vector<int>a(n),dp(n,1);
-    for(int&i:a)cin>>i;
-    int ans=1;
-    for(int i=0;i<n;i++){
-        for(int j=0;j<i;j++)if(a[j]<a[i]) dp[i]=max(dp[i],dp[j]+1);
-        ans=max(ans,dp[i]);
+
+int main() {
+    int n;
+    cin >> n;                 // 讀入序列長度 n
+
+    vector<int> a(n), dp(n, 1);
+    // a[i] = 序列的第 i 個數字
+    // dp[i] = 以 a[i] 作為「結尾」的 LIS 長度
+    // 初始每個 dp[i] = 1（至少包含自己）
+
+    for (int &i : a)
+        cin >> i;            // 讀入序列
+
+    int ans = 1;             // 全局最大 LIS 長度
+
+    // 外圈迴圈：計算 dp[i]
+    for (int i = 0; i < n; i++) {
+
+        // 內圈迴圈：找所有 j < i 且 a[j] < a[i]
+        for (int j = 0; j < i; j++)
+            if (a[j] < a[i])
+                // 若能接在 a[j] 後面，就更新 dp[i]
+                dp[i] = max(dp[i], dp[j] + 1);
+
+        // 更新目前找到的最大 LIS 長度
+        ans = max(ans, dp[i]);
     }
-    cout<<ans;
+
+    cout << ans;             // 輸出 LIS 長度
 }
+
 ```
 
 ## Python
