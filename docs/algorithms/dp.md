@@ -1,6 +1,5 @@
 # 動態規劃（Dynamic Programming）教學
 
-> 給高中／大一程度學生使用，搭配 C++ / Python 範例與圖表說明。
 
 ---
 
