@@ -474,7 +474,6 @@ dp[i][w]=max(dp[i−1][w], dp[i−1][w−weight[i]]+value[i])
 STB：
 
 * State：dp[i][cap]=用前 i 個物品、容量為 cap 的最大價值
-* 
 * Transition：取或不取
 * 
   **如果不拿第 i 物品： dp[i][cap]=dp[i−1][cap]
