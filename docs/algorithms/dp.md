@@ -124,23 +124,43 @@ print(dp[n])
 dp[n]=dp[n−1]+dp[n−2]
 
 S（狀態）：dp[i] = 第 i 個費波那契數
+
 T（轉移）：dp[i] = dp[i-1] + dp[i-2]
+
 B（初始值）：dp[0]=0, dp[1]=1
+
 輸出第 n 個 Fibonacci 數（0 ≤ n ≤ 90）。
 
 ## C++
 
 ```cpp
-#include <bits/stdc++.h>
-using namespace std;
-int main(){
-    int n; cin >> n;
-    vector<long long> dp(n+1);
-    dp[0]=0;
-    if(n>=1) dp[1]=1;
-    for(int i=2;i<=n;i++) dp[i]=dp[i-1]+dp[i-2];
-    cout<<dp[n];
+#include <bits/stdc++.h>  // 把常用的 C++ 標準函式庫一次全部載入
+using namespace std;      // 使用 std 命名空間，方便寫 cout / cin 等
+
+int main() {              // 主程式進入點
+    int n;                // 宣告整數變數 n，用來存「第幾個 Fibonacci」
+    cin >> n;             // 從輸入讀入 n
+
+    // 建立一個長度為 n+1 的陣列 dp
+    // dp[i] 用來存「第 i 個 Fibonacci 數」
+    vector<long long> dp(n + 1);
+
+    dp[0] = 0;            // 根據定義：F(0) = 0
+    if (n >= 1)           // 如果 n 至少是 1（避免 n=0 時越界）
+        dp[1] = 1;        // 根據定義：F(1) = 1
+
+    // 用迴圈從 i = 2 一直到 i = n
+    // 每次都根據「前兩項」算出下一項
+    for (int i = 2; i <= n; i++) {
+        // Fibonacci 遞迴關係：
+        // F(i) = F(i-1) + F(i-2)
+        dp[i] = dp[i - 1] + dp[i - 2];
+    }
+
+    cout << dp[n];        // 輸出第 n 個 Fibonacci 數
+    return 0;             // 正常結束程式
 }
+
 ```
 
 ## Python
@@ -259,25 +279,30 @@ STB：
 #include <bits/stdc++.h>
 using namespace std;
 
-const int MOD = 1e9 + 7;
-
 int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    const int MOD = 1000000007;
     int n;
-    cin >> n;
+    if (!(cin >> n)) return 0;
 
-    vector<long long> dp(n+1);
-    dp[0] = 1;
+    // dp[x] = 湊出總和 x 的方法數
+    vector<int> dp(n + 1, 0);
+    dp[0] = 1;  // 和為 0 只有一種方法：什麼都不做
 
-    for(int x=1; x<=n; x++){
-        long long sum = 0;
-        for(int k=1; k<=6; k++){
-            if(x-k<0) break;
-            sum += dp[x-k];
+    for (int x = 1; x <= n; x++) {
+        long long ways = 0;
+        // 嘗試最後一顆骰子是 1~6
+        for (int k = 1; k <= 6; k++) {
+            if (x - k < 0) break;       // 後面的 k 只會更大，全都不合法，直接離開迴圈
+            ways += dp[x - k];          // 前面先湊到 x-k，再加上這顆 k
         }
-        dp[x] = sum % MOD;
+        dp[x] = (int)(ways % MOD);      // 記得取模
     }
 
-    cout << dp[n];
+    cout << dp[n] << '\n';
+    return 0;
 }
 ```
 ## python（逐行註解）
@@ -313,21 +338,49 @@ STB：
 
 ## C++
 ```cpp
-#include <bits/stdc++.h>
-using namespace std; const int MOD=1e9+7;
-int main(){
-    int n; cin>>n;
-    vector<long long> dp(n+1),pre(n+1);
-    dp[0]=1; pre[0]=1;
-    for(int x=1;x<=n;x++){
-        int L=max(0,x-6),R=x-1;
-        long long sum=pre[R];
-        if(L>0) sum=(sum-pre[L-1]+MOD)%MOD;
-        dp[x]=sum;
-        pre[x]=(pre[x-1]+dp[x])%MOD;
+#include <bits/stdc++.h>                   // 載入常用的 C++ 標頭
+using namespace std;
+const int MOD = 1e9+7;                    // 題目常用的大質數取模
+
+int main() {
+    int n; 
+    cin >> n;                              // 讀入要湊出的總和 n
+
+    // dp[x] = 湊出總和 x 的方法數
+    // pre[x] = dp[0] + dp[1] + ... + dp[x]（prefix sum）
+    vector<long long> dp(n + 1), pre(n + 1);
+
+    dp[0] = 1;                             // base case：湊出 0 的方法只有 1 種（什麼都不做）
+    pre[0] = 1;                            // prefix[0] = dp[0]
+
+    // 依序計算 dp[1] ... dp[n]
+    for (int x = 1; x <= n; x++) {
+
+        // L = 區間左端點（若 x>=6 就是 x-6，否則就是 0）
+        // R = 區間右端點 = x-1
+        // 這段代表：dp[x] = dp[x-1] + dp[x-2] + ... + dp[x-6]
+        int L = max(0, x - 6);
+        int R = x - 1;
+
+        // 先取 prefix[R] = dp[0] + ... + dp[R]
+        long long sum = pre[R];
+
+        // 若 L > 0，代表左界不是從 dp[0] 開始
+        // 真正的區間和 = prefix[R] - prefix[L-1]
+        if (L > 0)
+            sum = (sum - pre[L - 1] + MOD) % MOD;
+
+        // 計算好的區間和就是 dp[x]
+        dp[x] = sum;
+
+        // prefix[x] = prefix[x-1] + dp[x]（記得也要 %MOD）
+        pre[x] = (pre[x - 1] + dp[x]) % MOD;
     }
-    cout<<dp[n];
+
+    // 輸出答案 dp[n]
+    cout << dp[n];
 }
+
 ````
 
 ## Python
@@ -365,18 +418,35 @@ STB：
 ## C++
 
 ```cpp
-#include <bits/stdc++.h>
+#include <bits/stdc++.h>           // 一次載入常用 C++ 標頭
 using namespace std;
-int main(){
-    int n,m;cin>>n>>m;
-    vector<vector<long long>> dp(n,vector<long long>(m));
-    dp[0][0]=1;
-    for(int i=0;i<n;i++)for(int j=0;j<m;j++){
-        if(i>0) dp[i][j]+=dp[i-1][j];
-        if(j>0) dp[i][j]+=dp[i][j-1];
-    }
-    cout<<dp[n-1][m-1];
+
+int main() {
+    int n, m;
+    cin >> n >> m;               // 讀入網格大小 n 行、m 列
+
+    // dp[i][j] = 從 (0,0) 走到 (i,j) 的方法數
+    vector<vector<long long>> dp(n, vector<long long>(m));
+
+    dp[0][0] = 1;                // 起點 (0,0) 只有 1 種走法（站在原地）
+
+    // 雙層迴圈，走遍整個 n x m 網格
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++) {
+
+            // 如果可以從上方來（i > 0）
+            if (i > 0)
+                dp[i][j] += dp[i - 1][j];
+
+            // 如果可以從左邊來（j > 0）
+            if (j > 0)
+                dp[i][j] += dp[i][j - 1];
+        }
+
+    // 最終答案：從 (0,0) 走到 (n-1,m-1) 的方法數
+    cout << dp[n - 1][m - 1];
 }
+
 ```
 
 ## Python
@@ -404,26 +474,54 @@ dp[i][w]=max(dp[i−1][w], dp[i−1][w−weight[i]]+value[i])
 
 STB：
 
-* State：dp[i][w] = 用前 i 件、容量 w 的最大價值
+* State：dp[i][cap]=用前 i 個物品、容量為 cap 的最大價值
 * Transition：取或不取
+  **如果不拿第 i 物品： dp[i][cap]=dp[i−1][cap]
+  **如果拿第 i 物品：dp[i][cap]=dp[i−1][cap−wi​]+vi​
+  **取最大值：:dp[i][cap]=max(不拿,要拿)
 * Base：dp[0][*]=0
 
 ## C++
 
 ```cpp
-#include <bits/stdc++.h>
+#include <bits/stdc++.h>              // 一次載入常用標頭
 using namespace std;
-int main(){
-    int n,W;cin>>n>>W;
-    vector<int>w(n),v(n);
-    for(int i=0;i<n;i++)cin>>w[i]>>v[i];
-    vector<vector<int>> dp(n+1,vector<int>(W+1));
-    for(int i=1;i<=n;i++)for(int cap=0;cap<=W;cap++){
-        dp[i][cap]=dp[i-1][cap];
-        if(cap>=w[i-1]) dp[i][cap]=max(dp[i][cap],dp[i-1][cap-w[i-1]]+v[i-1]);
-    }
-    cout<<dp[n][W];
+
+int main() {
+    int n, W;
+    cin >> n >> W;                    // n = 物品數量, W = 背包容量
+
+    vector<int> w(n), v(n);           // w[i] = 第 i 個物品重量, v[i] = 價值
+
+    // 讀入每個物品的重量與價值
+    for (int i = 0; i < n; i++)
+        cin >> w[i] >> v[i];
+
+    // dp[i][cap] =
+    // 用前 i 個物品、容量為 cap 能得到的最大價值
+    vector<vector<int>> dp(n + 1, vector<int>(W + 1));
+
+    // i = 前 i 個物品
+    for (int i = 1; i <= n; i++)
+        // cap = 當前背包容量
+        for (int cap = 0; cap <= W; cap++) {
+
+            // 1. 不拿第 i 個物品
+            dp[i][cap] = dp[i - 1][cap];
+
+            // 2. 若容量夠，考慮拿第 i 個物品（i-1 是 index）
+            if (cap >= w[i - 1]) {
+                dp[i][cap] = max(
+                    dp[i][cap],                         // 不拿
+                    dp[i - 1][cap - w[i - 1]] + v[i - 1] // 拿
+                );
+            }
+        }
+
+    // dp[n][W] = 用全部 n 個物品、容量 W 的最大價值
+    cout << dp[n][W];
 }
+
 ```
 
 ## Python
