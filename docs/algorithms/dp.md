@@ -409,7 +409,9 @@ dp[i][j]=dp[i−1][j]+dp[i][j−1] n×m 網格，
 只能往右或往下，求走法數。
 STB：
 * State：dp[i][j] = 走到 (i,j) 的方法數
+  
 * Transition：由上或左而來
+  
 * Base：dp[0][0]=1
 
 ## C++
@@ -475,7 +477,7 @@ STB：
 
 * State：dp[i][cap]=用前 i 個物品、容量為 cap 的最大價值
 * Transition：取或不取
-* 
+   
   **如果不拿第 i 物品： dp[i][cap]=dp[i−1][cap]
   
   **如果拿第 i 物品：dp[i][cap]=dp[i−1][cap−wi​]+vi​
