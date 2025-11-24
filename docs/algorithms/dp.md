@@ -212,8 +212,6 @@ STB：
 * Transition：dp[x] = dp[x-1] + ... + dp[x-6]
 * Base：dp[0]=1
 
----
----
 
 ## 小朋友版故事解釋
 
@@ -234,7 +232,7 @@ STB：
 
 共 8 種 → dp[4] = 8。
 
----
+
 ## 表格示範（以 n=7）
 
 | x | 公式                                                    | dp[x] |
@@ -257,7 +255,7 @@ STB：
 
 ## C++（逐行註解）
 
-````cpp
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -281,9 +279,10 @@ int main() {
 
     cout << dp[n];
 }
+
 ## python（逐行註解）
 
-````python
+```python
 MOD = 10**9 + 7
 n = int(input())
 
@@ -493,6 +492,3 @@ print(ans)
 ---
 ※以上資料為chatgpt整理
 
-# ✔ 完整 dp.md 已全部生成。
-
-> 如需「可下載 Markdown 檔案」、或「拆為多頁」、或「加入圖示版本」，請告訴我，我可直接幫你輸出成 downloadable file。
