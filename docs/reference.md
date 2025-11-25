@@ -8,7 +8,7 @@
 
 - [吳邦一的 APCS 題解目錄](https://hackmd.io/@bangyewu/B13lefwMp#吳邦一的APCS題解目錄)
 - [Yui Huang 演算法學習筆記](https://yuihuang.com/)
-- - [Python3 教程｜菜鸟教程](https://www.runoob.com/python3/python3-tutorial.html)
+- [Python3 教程｜菜鸟教程](https://www.runoob.com/python3/python3-tutorial.html)
 - [C++ 教程｜菜鸟教程](https://www.runoob.com/cplusplus/cpp-tutorial.html)
 - [W3Schools](https://www.w3schools.com/)
 - [均一教育平台 Junyi Academy](https://www.junyiacademy.org/computing/programming)
